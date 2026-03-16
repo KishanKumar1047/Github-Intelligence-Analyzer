@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend.github.github_fetcher import fetch_repositories
 from backend.analyzers.tech_stack import detect_tech_stack
@@ -13,6 +14,21 @@ from backend.report.report_generator import generate_report
 app = FastAPI()
 
 
+# Allow frontend requests (Vercel)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # you can restrict later to your Vercel domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def root():
+    return {"message": "GitHub Intelligence Analyzer API is running"}
+
+
 @app.get("/analyze/{username}")
 def analyze(username: str):
 
@@ -24,6 +40,12 @@ def analyze(username: str):
 
     score = calculate_score(repos, stack)
 
-    report = generate_report(repos, stack, domains, [], score)
+    report = generate_report(
+        repos=repos,
+        stack=stack,
+        domains=domains,
+        frameworks=[],
+        score=score
+    )
 
     return report
