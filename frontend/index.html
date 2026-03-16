@@ -2,19 +2,46 @@
 <html>
 
 <head>
+
 <title>GitHub Intelligence Analyzer</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>GitHub Intelligence Analyzer</h1>
 
-<input id="username" placeholder="Enter GitHub username">
-<button onclick="analyze()">Analyze</button>
+<p class="subtitle">
+Analyze developer skills, tech stack and portfolio strength
+</p>
+
+<div class="search-box">
+
+<input
+id="username"
+placeholder="Enter GitHub username (example: torvalds)"
+>
+
+<button onclick="analyze()">
+Analyze
+</button>
+
+</div>
+
+<div id="loading" class="loading hidden">
+Analyzing GitHub profile...
+</div>
 
 <pre id="result"></pre>
+
+</div>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>

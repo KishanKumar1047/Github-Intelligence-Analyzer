@@ -1,12 +1,36 @@
 async function analyze(){
 
-const username = document.getElementById("username").value
+let username = document.getElementById("username").value.trim()
 
-const response = await fetch(`https://github-intelligence-analyzer.onrender.com/analyze/${username}`)
+if(!username){
+alert("Enter a GitHub username")
+return
+}
+
+username = username.replace("/analyze/","")
+
+const loading = document.getElementById("loading")
+const result = document.getElementById("result")
+
+loading.classList.remove("hidden")
+result.textContent = ""
+
+try{
+
+const response = await fetch(
+`https://github-intelligence-analyzer.onrender.com/analyze/${username}`
+)
 
 const data = await response.json()
 
-document.getElementById("result").textContent =
-JSON.stringify(data, null, 2)
+result.textContent = JSON.stringify(data,null,2)
+
+}catch(error){
+
+result.textContent = "Error analyzing profile"
+
+}
+
+loading.classList.add("hidden")
 
 }
