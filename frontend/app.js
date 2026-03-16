@@ -1,3 +1,4 @@
+console.log("JS Loaded")
 async function analyze(){
 
 let username = document.getElementById("username").value.trim()
