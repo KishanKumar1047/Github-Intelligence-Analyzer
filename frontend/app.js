@@ -12,7 +12,7 @@ result.textContent = ""
 try{
 
 const response = await fetch(
-`https://github-intelligence-analyzer.onrender.com/analyze/${username}`
+`fortunate-alignment-production-a76f.up.railway.app/analyze/${username}`
 )
 
 const data = await response.json()
