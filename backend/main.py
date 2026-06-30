@@ -9,6 +9,7 @@ from backend.analyzers.complexity_analyzer import estimate_complexity
 from backend.analyzers.originality_detector import detect_originality
 from backend.scoring.portfolio_score import calculate_score
 from backend.report.report_generator import generate_report
+from backend.job_predictor import predict_jobs
 
 
 app = FastAPI()
@@ -40,11 +41,13 @@ def analyze(username: str):
 
     score = calculate_score(repos, stack)
 
+    jobs = predict_jobs(stack)
+
     report = generate_report(
         repos=repos,
         stack=stack,
         domains=domains,
-        frameworks=[],
+        jobs=jobs,
         score=score
     )
 
