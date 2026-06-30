@@ -12,7 +12,7 @@ result.textContent = ""
 try{
 
 const response = await fetch(
-`fortunate-alignment-production-a76f.up.railway.app/analyze/${username}`
+`http://127.0.0.1:8000/analyze/${username}`
 )
 
 const data = await response.json()
