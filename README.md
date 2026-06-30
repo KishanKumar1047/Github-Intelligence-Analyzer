@@ -170,12 +170,17 @@ github-intelligence-analyzer
 
 ### 1️⃣ Clone the repository
 
-```
-git clone https://github.com/yourusername/github-intelligence-analyzer.git
-```
+Open the existing project folder:
 
 ```
-cd github-intelligence-analyzer
+cd C:\Users\kishan\Desktop\projects\Github-Intelligence-Analyzer-main\Github-Intelligence-Analyzer-main
+```
+
+Create and activate a virtual environment:
+
+```
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
 ---
@@ -183,7 +188,8 @@ cd github-intelligence-analyzer
 ### 2️⃣ Install dependencies
 
 ```
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ---
@@ -191,7 +197,7 @@ pip install -r requirements.txt
 ### 3️⃣ Run backend server
 
 ```
-uvicorn backend.main:app --reload
+python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 API will run at:
@@ -206,17 +212,35 @@ Open API docs:
 http://127.0.0.1:8000/docs
 ```
 
+Example API request:
+
+```
+http://127.0.0.1:8000/analyze/torvalds
+```
+
 ---
 
 ### 4️⃣ Run frontend
 
-Open:
+Open a second PowerShell terminal in the same project folder and run:
 
 ```
-frontend/index.html
+python -m http.server 5500 -d frontend
+```
+
+Then open:
+
+```
+http://127.0.0.1:5500
 ```
 
 in your browser.
+
+The frontend is configured to call the local backend at:
+
+```
+http://127.0.0.1:8000
+```
 
 ---
 
